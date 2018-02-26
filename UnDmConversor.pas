@@ -1,4 +1,4 @@
-unit UnDmXML;
+unit UnDmConversor;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Datasnap.Provider, Datasnap.Xmlxform;
 
 type
-  TDmXML = class(TDataModule)
+  TDmConversor = class(TDataModule)
     XMLTransformProvider: TXMLTransformProvider;
     CdsXML: TClientDataSet;
   private
@@ -17,7 +17,7 @@ type
   end;
 
 var
-  DmXML: TDmXML;
+  DmConversor: TDmConversor;
 
 implementation
 

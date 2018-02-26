@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
-  Data.DB, Vcl.DBGrids, UnDmXML;
+  Data.DB, Vcl.DBGrids, UnFactoryConversion, UnDmConversor;
 
 type
   TFormViewConversor = class(TForm)
@@ -18,11 +18,14 @@ type
     procedure BtnCarregarXMLClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
-    FTDmXML : TDmXML;
+      FConversorXml : TDmConversor;
+      FTypeFile : TFactoryConvesion;
   public
-    procedure SetarDataSourceXML;
+    procedure CriarInstanciaTypeFile;
+    procedure MostrarOnGrid;
+    constructor Create; reintroduce;
+    destructor Destroy; override;
   end;
 
 var
@@ -30,34 +33,64 @@ var
 
 implementation
 
+uses
+  UnFactoryXml, UnXMLabs;
+
+const
+  BtnFileXml = 0;
+  BtnFileCsv = 1;
+
 {$R *.dfm}
 
 procedure TFormViewConversor.BtnCarregarXMLClick(Sender: TObject);
 begin
-  SetarDataSourceXML;
+
+  DsFilesXML.DataSet := FConversorXml.CdsXML;
+  DBGridConversor.DataSource := DsFilesXML;
+end;
+
+constructor TFormViewConversor.Create;
+begin
+
+end;
+
+procedure TFormViewConversor.CriarInstanciaTypeFile;
+begin
+//  if BtnCarregarXML.OnClick then
+//    BtnFileXml : FTypeFile := TFactoryXml.Create;
+//  end;
+
+end;
+
+destructor TFormViewConversor.Destroy;
+begin
+
+  inherited;
 end;
 
 procedure TFormViewConversor.FormClose(Sender: TObject; var Action:
     TCloseAction);
 begin
-  FTDmXML.Free;
+//  FTDmXML.Free;
 end;
 
 procedure TFormViewConversor.FormCreate(Sender: TObject);
 begin
-  FTDmXML := TDmXML.Create(Self);
+//  FTDmXML := TDmXML.Create(Self);
 end;
 
-procedure TFormViewConversor.FormShow(Sender: TObject);
+procedure TFormViewConversor.MostrarOnGrid;
+var
+  carregaxml : TXmlAbs;
 begin
+try
+  DsFilesXML.DataSet := FConversorXml.CdsXML;
 
+
+finally
+  carregaxml.Free;
 end;
 
-{ TFormViewConversor }
-
-procedure TFormViewConversor.SetarDataSourceXML;
-begin
-  DsFilesXML.DataSet := FTDmXML.CdsXML;
 end;
 
 end.

@@ -3,8 +3,11 @@ program Project;
 uses
   Vcl.Forms,
   UnPrincipal in 'UnPrincipal.pas' {FormViewConversor},
-  UnDmXML in 'UnDmXML.pas' {DmXML},
-  UnConversorXML in 'UnConversorXML.pas';
+  UnDmConversor in 'UnDmConversor.pas' {DmConversor},
+  UnConversorXml in 'UnConversorXml.pas',
+  UnXMLabs in 'UnXMLabs.pas',
+  UnFactoryConversion in 'UnFactoryConversion.pas',
+  UnFactoryXml in 'UnFactoryXml.pas';
 
 {$R *.res}
 

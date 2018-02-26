@@ -1,53 +1,61 @@
-unit UnConversorXML;
+unit UnConversorXml;
 
 interface
 
 uses
-  UnDmXML;
+  UnXMLabs, UnDmConversor;
 
 type
-  TConversorXML = class(TDmXML)
+  TConversorXML = class(TXmlAbs)
   private
-    FDmXML : TDmXML;
-    FTrasformRead_XML : string;
-    FTrasformWrite_XML : string;
+    FDmConversor : TDmConversor;
   public
-    procedure SetarDataFileXML;
-    procedure SetProvider_CdsXML;
-    procedure GetFileXML;
-    procedure SetarCpXML_TrasformRead;
-    procedure SetarCpXML_TrasformWrite;
-    property TrasformRead: string write SetarCpXML_TrasformRead;
-  end;
-  const PathFile = 'C:\Users\Edward Nascimento\Dev\mockdata\data.xml';
+    procedure SetarDataFileXML; override;
+    procedure SetProvider_CdsXML; override;
+    procedure SetarCpXML_TrasformRead; override;
+    procedure SetarCpXML_TrasformWrite; override;
+//    destructor Destroy; override;
+//    constructor Create; reintroduce;
+    end;
+
+  const PathFileXml = 'C:\Users\Edward Nascimento\Dev\mockdata\data.xml';
+        PathFileXtr = 'C:\Users\Edward Nascimento\Dev\mockdata\ToDp.xtr';
 
 implementation
 
-{ TConversorXML }
+//constructor TConversorXML.Create;
+//begin
+//  FDmConversor := TDmConversor.Create(t);
+//end;
 
-procedure TConversorXML.GetFileXML;
-begin
-
-end;
+//destructor TConversorXML.Destroy;
+//begin
+//  FDmConversor.Free;
+//  inherited;
+//end;
 
 procedure TConversorXML.SetarCpXML_TrasformRead;
 begin
-  FDmXML.XMLTransformProvider.TransformRead := 'C:\Users\Edward Nascimento\Dev\mockdata\ToDp.xtr';
+  inherited;
+  FDmConversor.XMLTransformProvider.TransformRead.TransformationFile := PathFileXtr;
 end;
 
 procedure TConversorXML.SetarCpXML_TrasformWrite;
 begin
-  FDmXML.XMLTransformProvider.TransformWrite := 'C:\Users\Edward Nascimento\Dev\mockdata\ToDp.xtr';
+  inherited;
+  FDmConversor.XMLTransformProvider.TransformWrite.TransformationFile := PathFileXtr;
 end;
 
 procedure TConversorXML.SetarDataFileXML;
 begin
-  FDmXML.XMLTransformProvider.XMLDataFile := PathFile;
+  inherited;
+  FDmConversor.XMLTransformProvider.XMLDataFile := PathFileXml;
 end;
 
 procedure TConversorXML.SetProvider_CdsXML;
 begin
- FDmXML.CdsXML.ProviderName := XMLTransformProvider;
+  inherited;
+  FDmConversor.CdsXML.ProviderName := 'XMLTransformProvider';
 end;
 
 end.
