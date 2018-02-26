@@ -89,10 +89,13 @@
             <Form>FormViewConversor</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnDmXML.pas">
-            <Form>DmXML</Form>
+        <DCCReference Include="UnDmConversor.pas">
+            <Form>DmConversor</Form>
         </DCCReference>
-        <DCCReference Include="UnConversorXML.pas"/>
+        <DCCReference Include="UnConversorXml.pas"/>
+        <DCCReference Include="UnXMLabs.pas"/>
+        <DCCReference Include="UnFactoryConversion.pas"/>
+        <DCCReference Include="UnFactoryXml.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
